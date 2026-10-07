@@ -11,10 +11,6 @@ extern "C" {
 #include "php_morton.h"
 }
 
-#ifndef ZEND_PARSE_PARAMS_THROW
-#define ZEND_PARSE_PARAMS_THROW 0
-#endif
-
 /* {{{ PHP_RINIT_FUNCTION
  */
 PHP_RINIT_FUNCTION(morton)
@@ -54,7 +50,11 @@ ZEND_END_ARG_INFO()
 PHP_FUNCTION(morton2d_encode) {
 	zend_long x, y;
 
+#if PHP_VERSION_ID >= 80600
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+#else
 	ZEND_PARSE_PARAMETERS_START_EX(ZEND_PARSE_PARAMS_THROW, 2, 2)
+#endif
 		Z_PARAM_LONG(x)
 		Z_PARAM_LONG(y)
 	ZEND_PARSE_PARAMETERS_END();
@@ -71,7 +71,11 @@ ZEND_END_ARG_INFO()
 PHP_FUNCTION(morton3d_encode) {
 	zend_long x, y, z;
 
+#if PHP_VERSION_ID >= 80600
+	ZEND_PARSE_PARAMETERS_START(3, 3)
+#else
 	ZEND_PARSE_PARAMETERS_START_EX(ZEND_PARSE_PARAMS_THROW, 3, 3)
+#endif
 		Z_PARAM_LONG(x)
 		Z_PARAM_LONG(y)
 		Z_PARAM_LONG(z)
@@ -89,7 +93,11 @@ PHP_FUNCTION(morton2d_decode) {
 	zend_long morton;
 	uint_fast32_t x, y;
 
+#if PHP_VERSION_ID >= 80600
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+#else
 	ZEND_PARSE_PARAMETERS_START_EX(ZEND_PARSE_PARAMS_THROW, 1, 1)
+#endif
 		Z_PARAM_LONG(morton)
 	ZEND_PARSE_PARAMETERS_END();
 
@@ -109,7 +117,11 @@ PHP_FUNCTION(morton3d_decode) {
 	zend_long morton;
 	uint_fast32_t x, y, z;
 
+#if PHP_VERSION_ID >= 80600
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+#else
 	ZEND_PARSE_PARAMETERS_START_EX(ZEND_PARSE_PARAMS_THROW, 1, 1)
+#endif
 		Z_PARAM_LONG(morton)
 	ZEND_PARSE_PARAMETERS_END();
 
