@@ -11,6 +11,10 @@ extern "C" {
 #include "php_morton.h"
 }
 
+#ifndef ZEND_PARSE_PARAMS_THROW
+#define ZEND_PARSE_PARAMS_THROW 0
+#endif
+
 /* {{{ PHP_RINIT_FUNCTION
  */
 PHP_RINIT_FUNCTION(morton)
